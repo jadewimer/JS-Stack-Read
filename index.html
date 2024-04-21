@@ -113,7 +113,8 @@
         url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports1/FeatureServer", //get URL from AGOL Item Page
         outFields: ["CITY"],
         popupTemplate: popupAirportsusa,
-        renderer: airportRenderer
+        renderer: airportRenderer,
+        definitionExpression: "Fac_Type = 'AIRPORT'" //adding sql to filter for airports
       });
 
       // Adding the usaeduLayer to the map
