@@ -81,12 +81,12 @@
       // Define a pop-up for usaeduLayer
       const popupEduusa = {
         title: "EDUs",
-        content: "<b>Name:</b> {NAME}<br><b>City:</b> {CITY}<br>"
+        content: "<b>Name:</b> {NAME}<br><b>Street:</b> {STREET}<br><b>City:</b> {CITY}<br><b>State:</b> {STATE}<br>"
       };
 
       const usaeduLayer = new FeatureLayer({
         url: "https://services1.arcgis.com/Ua5sjt3LWTPigjyD/arcgis/rest/services/Public_School_Location_201819/FeatureServer", //get URL from AGOL Item Page
-        outFields: ["NAME", "CITY"],
+        outFields: ["NAME","STREET", "CITY", "STATE"],
         popupTemplate: popupEduusa
       });
 
