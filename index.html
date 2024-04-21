@@ -24,6 +24,7 @@
       const map = new Map({
         basemap: "satellite"
       });
+      
 
       const view = new MapView({
         container: "viewDiv", // Reference to the DOM node that will contain the view
@@ -31,6 +32,7 @@
         center: [-96.5295, 41.6183], // Longitude, Latitude for Hooper, NE where I grew up
         zoom: 10 // Zoom level
       });
+      
 
       const graphicsLayer = new GraphicsLayer();  
       map.add(graphicsLayer);
@@ -140,6 +142,33 @@ const airportLabels = {
       // Adding the usaeduLayer to the map
       map.add(usaAirportsLayer);
     });
+
+          // Define the polygon geometry for Hooper, NE
+          const hooperPolygon = new Polygon({
+        rings: [
+          [-96.566028, 41.660384], // Northwest corner
+          [-96.566028, 41.694645], // Northeast corner
+          [-96.449347, 41.694645], // Southeast corner
+          [-96.449347, 41.660384], // Southwest corner
+          [-96.566028, 41.660384]  // Closing point (Northwest corner)
+        ]
+      });
+
+      // Define symbol for the polygon
+      const polygonSymbol = {
+        type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+        color: [227, 139, 79, 0.8], // orange, opacity 80%
+        outline: {  // autocasts as new SimpleLineSymbol()
+          color: [255, 255, 255],
+          width: 1
+        }
+      };
+
+      // Create graphic representing the polygon
+      const hooperPolygonGraphic = new Graphic({
+        geometry: hooperPolygon,
+        symbol: polygonSymbol
+      });
   </script>
 
   <!-- CSS to make a full screen map -->
