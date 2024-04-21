@@ -144,31 +144,13 @@ const airportLabels = {
     });
 
           // Define the polygon geometry for Hooper, NE
-          const hooperPolygon = new Polygon({
-        rings: [
-          [-96.566028, 41.660384], // Northwest corner
+      var polygon = L.polygon([
+      [-96.566028, 41.660384], // Northwest corner
           [-96.566028, 41.694645], // Northeast corner
           [-96.449347, 41.694645], // Southeast corner
           [-96.449347, 41.660384], // Southwest corner
           [-96.566028, 41.660384]  // Closing point (Northwest corner)
-        ]
-      });
-
-      // Define symbol for the polygon
-      const polygonSymbol = {
-        type: "simple-fill",  // autocasts as new SimpleFillSymbol()
-        color: [227, 139, 79, 0.8], // orange, opacity 80%
-        outline: {  // autocasts as new SimpleLineSymbol()
-          color: [255, 255, 255],
-          width: 1
-        }
-      };
-
-      // Create graphic representing the polygon
-      const hooperPolygonGraphic = new Graphic({
-        geometry: hooperPolygon,
-        symbol: polygonSymbol
-      });
+]).addTo(map);
   </script>
 
   <!-- CSS to make a full screen map -->
