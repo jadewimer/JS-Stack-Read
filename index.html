@@ -92,6 +92,21 @@
 
       // Adding the usaeduLayer to the map
       map.add(usaeduLayer);
+
+         // Define a pop-up for usaeduLayer
+         const popupAirportsusa = {
+        title: "EDUs",
+        content: "<b>City:</b> {CITY}<br>"
+      };
+
+      const usaAirportsLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports1/FeatureServer", //get URL from AGOL Item Page
+        outFields: ["CITY"],
+        popupTemplate: popupAirportsusa
+      });
+
+      // Adding the usaeduLayer to the map
+      map.add(usaAirportsLayer);
     });
   </script>
 
