@@ -30,7 +30,7 @@
         container: "viewDiv", // Reference to the DOM node that will contain the view
         map: map, // References the map object
         center: [-96.5295, 41.6183], // Longitude, Latitude for Hooper, NE where I grew up
-        zoom: 10 // Zoom level
+        zoom: 4 // Zoom level
       });
       
 
@@ -143,14 +143,39 @@ const airportLabels = {
       map.add(usaAirportsLayer);
     });
 
-          // Define the polygon geometry for Hooper, NE
-      var polygon = L.polygon([
-      [-96.566028, 41.660384], // Northwest corner
-          [-96.566028, 41.694645], // Northeast corner
-          [-96.449347, 41.694645], // Southeast corner
-          [-96.449347, 41.660384], // Southwest corner
-          [-96.566028, 41.660384]  // Closing point (Northwest corner)
-]).addTo(map);
+    //Challenge 2
+    view.on("click", function(evt) {
+  // Create a polygon with coordinates around the clicked point
+  const polygonGeometry = {
+    type: "polygon",
+    rings: [
+      [
+        [evt.mapPoint.longitude - 0.001, evt.mapPoint.latitude - 0.001],
+        [evt.mapPoint.longitude + 0.001, evt.mapPoint.latitude - 0.001],
+        [evt.mapPoint.longitude + 0.001, evt.mapPoint.latitude + 0.001],
+        [evt.mapPoint.longitude - 0.001, evt.mapPoint.latitude + 0.001],
+        [evt.mapPoint.longitude - 0.001, evt.mapPoint.latitude - 0.001]
+      ]
+    ]
+  };
+
+  // Create a polygon graphic
+  const graphic = new Graphic({
+    geometry: polygonGeometry,
+    symbol: {
+      type: "simple-fill",
+      color: [227, 139, 79, 0.8], // Change color and transparency as needed
+      outline: {
+        color: [255, 255, 255],
+        width: 1
+      }
+    }
+  });
+
+  // Add the graphic to the view
+  view.graphics.add(graphic);
+});
+
   </script>
 
   <!-- CSS to make a full screen map -->
